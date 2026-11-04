@@ -1,5 +1,7 @@
 # Home Assistant Voice Factory
 
+[![Tests](https://github.com/Scottimus/Home-Assistant-Voice-Factory/actions/workflows/tests.yml/badge.svg)](https://github.com/Scottimus/Home-Assistant-Voice-Factory/actions/workflows/tests.yml)
+
 Generate filtered announcement batches with multiple takes, FFmpeg postprocessing, resumable per-take checkpoints, and CSV manifests. The configuration loading and audio filters originate in an existing local IndexTTS2 batch pipeline.
 
 ## Run the Windows demo
