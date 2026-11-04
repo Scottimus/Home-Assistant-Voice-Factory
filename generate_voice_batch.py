@@ -5,7 +5,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 import uuid
@@ -31,7 +30,8 @@ def synthesize(text, target, voice, engines):
     elif engine == "xtts":
         if engine not in engines:
             from TTS.api import TTS
-            engines[engine] = TTS(model_path=voice["model_path"], config_path=voice["config_path"])
+            engines[engine] = TTS(model_path=voice["model_path"], config_path=voice["config_path"]).to(
+                voice.get("device", "cpu"))
         engines[engine].tts_to_file(text=text, speaker_wav=voice["reference_audio"],
                                    language=voice.get("language", "en"), file_path=str(target))
     elif engine == "indextts2":
@@ -68,6 +68,8 @@ def generate(rows, voice, output, takes=0, skip_existing=False):
             stem = f"{key}_take{take:03d}"
             wav = output / (stem + ".wav")
             mp3 = output / (stem + ".mp3")
+            if voice.get("reference_audio") and Path(voice["reference_audio"]).resolve() in {wav, mp3}:
+                raise ValueError("Reference audio must be separate from generated output")
             checkpoint = output / (stem + ".json")
             status = "generated"
             try:
