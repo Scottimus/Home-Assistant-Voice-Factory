@@ -1,0 +1,4 @@
+key,text,category,enabled,takes
+welcome,Welcome to the demonstration.,general,true,1
+timer,The sample timer has finished.,timer,true,2
+disabled,This line should be skipped.,general,false,1

@@ -1,0 +1,1 @@
+{"system_demo":{"engine":"sapi","default_takes":1,"postprocess":{"trim_silence":true,"normalize":true,"mp3_bitrate":"128k"}}}
